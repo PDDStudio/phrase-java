@@ -1,5 +1,7 @@
 package com.pddstudio.phrase.java;
 
+import com.pddstudio.phrase.java.Phrase.KeyIdentifier;
+
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -105,6 +107,33 @@ public class PhraseTest extends BaseUtilityTest {
 		String expected = getExpectedDoubleArrayResult(doubles, separator);
 		String phrase = Phrase.from("{double_array}").putArray("double_array", doubles, separator).formatString();
 		printResult("doubleArrayTest()", phrase, expected);
+		assertEquals(phrase, expected);
+	}
+
+	@Test
+	public void simpleAngleBracketsTest() {
+		int[] ints = getRandomIntArray();
+		String expected = getExpectedIntArrayResult(ints, separator);
+		String phrase = Phrase.from("<integer_array>", KeyIdentifier.ANGLE_BRACKETS).putArray("integer_array", ints, separator).formatString();
+		printResult("simpleAngleBracketsTest()", phrase, expected);
+		assertEquals(phrase, expected);
+	}
+
+	@Test
+	public void simpleSquareBracketsTest() {
+		int[] ints = getRandomIntArray();
+		String expected = getExpectedIntArrayResult(ints, separator);
+		String phrase = Phrase.from("[integer_array]", KeyIdentifier.SQUARE_BRACKETS).putArray("integer_array", ints, separator).formatString();
+		printResult("simpleSquareBracketsTest()", phrase, expected);
+		assertEquals(phrase, expected);
+	}
+
+	@Test
+	public void simpleRoundBracketsTest() {
+		int[] ints = getRandomIntArray();
+		String expected = getExpectedIntArrayResult(ints, separator);
+		String phrase = Phrase.from("(integer_array)", KeyIdentifier.ROUND_BRACKETS).putArray("integer_array", ints, separator).formatString();
+		printResult("simpleRoundBracketsTest()", phrase, expected);
 		assertEquals(phrase, expected);
 	}
 
