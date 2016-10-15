@@ -106,22 +106,52 @@ public final class Phrase {
 		return put(key, Integer.toString(value));
 	}
 
+	/**
+	 * Replaces the given key with the {@link Boolean#toString(boolean)} value for the given boolean.
+	 *
+	 * @see #put(String, CharSequence)
+	 */
 	public Phrase put(String key, boolean value) {
 		return put(key, Boolean.toString(value));
 	}
 
+	/**
+	 * Replaces the given key with the {@link String#valueOf(double)} value for the given double.
+	 *
+	 * @see #put(String, CharSequence)
+	 */
 	public Phrase put(String key, double value) {
 		return put(key, String.valueOf(value));
 	}
 
+	/**
+	 * Replaces the given key with the {@link String#valueOf(float)} value for the given float.
+	 *
+	 * @see #put(String, CharSequence)
+	 */
 	public Phrase put(String key, float value) {
 		return put(key, String.valueOf(value));
 	}
 
+	/**
+	 * Replaces the given key with the {@link String#valueOf(Object)} value for the given object.
+	 *
+	 * @see #put(String, CharSequence)
+	 */
 	public <T> Phrase put(String key, T value) {
 		return put(key, String.valueOf(value));
 	}
 
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given array item - chained with the provided separator.
+	 *
+	 * @param key - The key for which should be replaced with this array.
+	 * @param values - The array which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #putArray(String, Object[], String)
+	 */
 	public Phrase putArray(String key, int[] values, String separator) {
 		Integer[] integers = new Integer[values.length];
 		for(int i = 0; i < integers.length; i++) {
@@ -130,6 +160,16 @@ public final class Phrase {
 		return putArray(key, integers, separator);
 	}
 
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given array item - chained with the provided separator.
+	 *
+	 * @param key - The key for which should be replaced with this array.
+	 * @param values - The array which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #putArray(String, Object[], String)
+	 */
 	public Phrase putArray(String key, boolean[] values, String separator) {
 		Boolean[] bools = new Boolean[values.length];
 		for(int i = 0; i < bools.length; i++) {
@@ -138,6 +178,16 @@ public final class Phrase {
 		return putArray(key, bools, separator);
 	}
 
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given array item - chained with the provided separator.
+	 *
+	 * @param key - The key for which should be replaced with this array.
+	 * @param values - The array which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #putArray(String, Object[], String)
+	 */
 	public Phrase putArray(String key, float[] values, String separator) {
 		Float[] floats = new Float[values.length];
 		for(int i = 0; i < floats.length; i++) {
@@ -146,6 +196,16 @@ public final class Phrase {
 		return putArray(key, floats, separator);
 	}
 
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given array item - chained with the provided separator.
+	 *
+	 * @param key - The key for which should be replaced with this array.
+	 * @param values - The array which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #putArray(String, Object[], String)
+	 */
 	public Phrase putArray(String key, double[] values, String separator) {
 		Double[] doubles = new Double[values.length];
 		for(int i = 0; i < doubles.length; i++) {
@@ -154,6 +214,16 @@ public final class Phrase {
 		return putArray(key, doubles, separator);
 	}
 
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given array item - chained with the provided separator.
+	 *
+	 * @param key - The key for which should be replaced with this array.
+	 * @param values - The array which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #put(String, CharSequence)
+	 */
 	public <T> Phrase putArray(String key, T[] values, String separator) {
 		separator = validateSeparator(separator);
 		StringBuilder chainedValues = new StringBuilder();
