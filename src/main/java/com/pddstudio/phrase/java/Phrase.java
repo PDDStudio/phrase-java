@@ -100,6 +100,22 @@ public final class Phrase {
 		return put(key, Integer.toString(value));
 	}
 
+	public Phrase put(String key, boolean value) {
+		return put(key, Boolean.toString(value));
+	}
+
+	public Phrase put(String key, double value) {
+		return put(key, String.valueOf(value));
+	}
+
+	public Phrase put(String key, float value) {
+		return put(key, String.valueOf(value));
+	}
+
+	public <T> Phrase put(String key, T value) {
+		return put(key, String.valueOf(value));
+	}
+
 	/**
 	 * Silently ignored if the key is not in the pattern.
 	 *
@@ -116,6 +132,22 @@ public final class Phrase {
 	 * @see #putOptional(String, CharSequence)
 	 */
 	public Phrase putOptional(String key, int value) {
+		return keys.contains(key) ? put(key, value) : this;
+	}
+
+	public Phrase putOptional(String key, boolean value) {
+		return keys.contains(key) ? put(key, value) : this;
+	}
+
+	public Phrase putOptional(String key, float value) {
+		return keys.contains(key) ? put(key, value) : this;
+	}
+
+	public Phrase putOptional(String key, double value) {
+		return keys.contains(key) ? put(key, value) : this;
+	}
+
+	public <T> Phrase putOptional(String key, T value) {
 		return keys.contains(key) ? put(key, value) : this;
 	}
 
