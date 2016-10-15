@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.util.Pair;
+
 /**
  * A fluent API for formatting Strings. Canonical usage:
  * <pre>
@@ -51,6 +53,9 @@ public final class Phrase {
 	/** The unmodified original pattern. */
 	private final CharSequence pattern;
 
+	/** The identification type for keys */
+	private final KeyIdentifier keyIdentifier;
+
 	/** All keys parsed from the original pattern, sans braces. */
 	private final Set<String> keys = new HashSet<String>();
 	private final Map<String, CharSequence> keysToValues = new HashMap<String, CharSequence>();
@@ -74,7 +79,16 @@ public final class Phrase {
 	 * @throws IllegalArgumentException if pattern contains any syntax errors.
 	 */
 	public static Phrase from(CharSequence pattern) {
-		return new Phrase(pattern);
+		return new Phrase(pattern, KeyIdentifier.CURLY_BRACKETS);
+	}
+
+	/**
+	 * Entry point into this API; pattern must be non-null.
+	 *
+	 * @throws IllegalArgumentException if pattern contains any syntax errors.
+	 */
+	public static Phrase from(CharSequence pattern, KeyIdentifier keyIdentifier) {
+		return new Phrase(pattern, keyIdentifier);
 	}
 
 	/**
@@ -316,10 +330,11 @@ public final class Phrase {
 		return pattern.toString();
 	}
 
-	private Phrase(CharSequence pattern) {
+	private Phrase(CharSequence pattern, KeyIdentifier keyIdentifier) {
 		curChar = (pattern.length() > 0) ? pattern.charAt(0) : EOF;
 
 		this.pattern = pattern;
+		this.keyIdentifier = keyIdentifier;
 
 		// A hand-coded lexer based on the idioms in "Building Recognizers By Hand".
 		// http://www.antlr2.org/book/byhand.pdf.
@@ -345,9 +360,9 @@ public final class Phrase {
 		if (curChar == EOF) {
 			return null;
 		}
-		if (curChar == '{') {
+		if (curChar == keyIdentifier.getOpenCharacter()) {
 			char nextChar = lookahead();
-			if (nextChar == '{') {
+			if (nextChar == keyIdentifier.getOpenCharacter()) {
 				return leftCurlyBracket(prev);
 			} else if (nextChar >= 'a' && nextChar <= 'z') {
 				return key(prev);
@@ -373,14 +388,14 @@ public final class Phrase {
 		}
 
 		// Consume the closing '}'.
-		if (curChar != '}') {
-			throw new IllegalArgumentException("Missing closing brace: }");
+		if (curChar != keyIdentifier.getCloseCharacter()) {
+			throw new IllegalArgumentException("Missing closing brace: " + keyIdentifier.getCloseCharString());
 		}
 		consume();
 
 		// Disallow empty keys: {}.
 		if (sb.length() == 0) {
-			throw new IllegalArgumentException("Empty key: {}");
+			throw new IllegalArgumentException("Empty key: " + keyIdentifier.getOpenCharString() + keyIdentifier.getCloseCharString());
 		}
 
 		String key = sb.toString();
@@ -392,7 +407,7 @@ public final class Phrase {
 	private TextToken text(Token prev) {
 		int startIndex = curCharIndex;
 
-		while (curChar != '{' && curChar != EOF) {
+		while (curChar != keyIdentifier.getOpenCharacter() && curChar != EOF) {
 			consume();
 		}
 		return new TextToken(prev, curCharIndex - startIndex);
@@ -467,7 +482,7 @@ public final class Phrase {
 	}
 
 	/** A sequence of two curly brackets. */
-	private static class LeftCurlyBracketToken extends Token {
+	private class LeftCurlyBracketToken extends Token {
 		LeftCurlyBracketToken(Token prev) {
 			super(prev);
 		}
@@ -475,7 +490,7 @@ public final class Phrase {
 		@Override
 		void expand(StringBuilder target, Map<String, CharSequence> data) {
 			int start = getFormattedStart();
-			target.replace(start, start + 2, "{");
+			target.replace(start, start + 2, keyIdentifier.getOpenCharString());
 		}
 
 		@Override
@@ -513,4 +528,35 @@ public final class Phrase {
 			return value.length();
 		}
 	}
+
+	public enum KeyIdentifier {
+		CURLY_BRACKETS('{', '}'),
+		ROUND_BRACKETS('(', ')'),
+		ANGLE_BRACKETS('<', '>'),
+		SQUARE_BRACKETS('[', ']');
+
+		private final Pair<Character, Character> identifiers;
+
+		KeyIdentifier(char open, char close) {
+			this.identifiers = new Pair<>(open, close);
+		}
+
+		public char getOpenCharacter() {
+			return identifiers.getKey();
+		}
+
+		public char getCloseCharacter() {
+			return identifiers.getValue();
+		}
+
+		public String getOpenCharString() {
+			return String.valueOf(getOpenCharacter());
+		}
+
+		public String getCloseCharString() {
+			return String.valueOf(getCloseCharacter());
+		}
+
+	}
+
 }
