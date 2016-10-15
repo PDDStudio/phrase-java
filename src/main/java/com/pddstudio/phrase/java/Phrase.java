@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2016 Patrick J
  * Copyright (C) 2013 Square, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +16,11 @@
  */
 package com.pddstudio.phrase.java;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,6 +45,8 @@ import java.util.Set;
  * doubly-linked list allows each token to ask its predecessor for the expanded length.
  */
 public final class Phrase {
+
+	private static final String DEFAULT_SEPARATOR = " ";
 
 	/** The unmodified original pattern. */
 	private final CharSequence pattern;
@@ -114,6 +120,53 @@ public final class Phrase {
 
 	public <T> Phrase put(String key, T value) {
 		return put(key, String.valueOf(value));
+	}
+
+	public Phrase putArray(String key, int[] values, String separator) {
+		Integer[] integers = new Integer[values.length];
+		for(int i = 0; i < integers.length; i++) {
+			integers[i] = values[i];
+		}
+		return putArray(key, integers, separator);
+	}
+
+	public Phrase putArray(String key, boolean[] values, String separator) {
+		Boolean[] bools = new Boolean[values.length];
+		for(int i = 0; i < bools.length; i++) {
+			bools[i] = values[i];
+		}
+		return putArray(key, bools, separator);
+	}
+
+	public Phrase putArray(String key, float[] values, String separator) {
+		Float[] floats = new Float[values.length];
+		for(int i = 0; i < floats.length; i++) {
+			floats[i] = values[i];
+		}
+		return putArray(key, floats, separator);
+	}
+
+	public Phrase putArray(String key, double[] values, String separator) {
+		Double[] doubles = new Double[values.length];
+		for(int i = 0; i < doubles.length; i++) {
+			doubles[i] = values[i];
+		}
+		return putArray(key, doubles, separator);
+	}
+
+	public <T> Phrase putArray(String key, T[] values, String separator) {
+		separator = validateSeparator(separator);
+		StringBuilder chainedValues = new StringBuilder();
+		List<T> typeList = Arrays.asList(values);
+		Iterator<T> iterator = typeList.iterator();
+		while (iterator.hasNext()) {
+			T object = iterator.next();
+			chainedValues.append(String.valueOf(object));
+			if(iterator.hasNext()) {
+				chainedValues.append(separator);
+			}
+		}
+		return put(key, chainedValues.toString());
 	}
 
 	/**
@@ -207,6 +260,14 @@ public final class Phrase {
 			if (head == null) head = next;
 			prev = next;
 		}
+	}
+
+	/** Makes sure that the given separator is not null or empty - if so the default separator is used. **/
+	private String validateSeparator(String separator) {
+		if(separator == null || separator.length() == 0) {
+			separator = DEFAULT_SEPARATOR;
+		}
+		return separator;
 	}
 
 	/** Returns the next token from the input pattern, or null when finished parsing. */
