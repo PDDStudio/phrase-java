@@ -13,7 +13,17 @@ public abstract class BaseUtilityTest {
 	private int    methodNameCount = 20;
 	private Random random          = new Random();
 
+	protected final Phrase.KeyIdentifier phraseKeyIdentifier;
+
+	public BaseUtilityTest(Phrase.KeyIdentifier keyIdentifier) {
+		this.phraseKeyIdentifier = keyIdentifier;
+	}
+
 	protected void printResult(String methodName, String result, String expected) {
+		System.out.println("==== Test Method: " + methodName + " Test KeyIdentifier: " +
+								   phraseKeyIdentifier.name() + " " +
+								   phraseKeyIdentifier.getOpenCharString() +
+								   phraseKeyIdentifier.getCloseCharString() + " ====");
 		StringBuilder message = new StringBuilder();
 		int remainingWhitespaces = methodNameCount - methodName.length();
 		if(remainingWhitespaces < 0) {
