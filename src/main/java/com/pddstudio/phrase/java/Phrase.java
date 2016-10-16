@@ -16,7 +16,10 @@
  */
 package com.pddstudio.phrase.java;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -251,6 +254,28 @@ public final class Phrase {
 			}
 		}
 		return put(key, chainedValues.toString());
+	}
+
+	/**
+	 * Replaces the given key with the created String of each item's {@link String#valueOf(Object)}
+	 * value for the given list item - chained with the provided separator.
+	 *
+	 * @param key - The key which should be replaced with this list
+	 * @param values - The list which should be used for this replacement.
+	 * @param separator - The separator which should be used to chain several items together.
+	 *
+	 * @see #putArray(String, Object[], String) 
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> Phrase putList(String key, List<T> values, String separator) {
+		if(values.isEmpty()) {
+			throw new IllegalArgumentException("List must not be empty!");
+		}
+		T[] objects = (T[]) Array.newInstance(values.get(0).getClass(), values.size());
+		for(int i = 0; i < objects.length; i++) {
+			objects[i] = values.get(i);
+		}
+		return putArray(key, objects, separator);
 	}
 
 	/**
