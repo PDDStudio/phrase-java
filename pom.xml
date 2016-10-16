@@ -4,19 +4,25 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.pddstudio</groupId>
-	<artifactId>phrase-java</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>phrase-java</name>
-	<description>A ported - Java only - fork of Phrase for Android</description>
-	<url>https://github.com/pddstudio/phrase-java</url>
+	<artifactId>phrase-java-root</artifactId>
+	<version>1.0.0</version>
+	<modules>
+		<module>phrase-commons</module>
+		<module>phrase-java</module>
+	</modules>
+	<packaging>pom</packaging>
 
 	<properties>
+		<!-- phrase-java specific properties -->
+		<phrase.java.version>1.0.0-SNAPSHOT</phrase.java.version>
+		<phrase.commons.version>1.0.0-SNAPSHOT</phrase.commons.version>
+		<!-- plugin specific properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<compile.source.version>1.7</compile.source.version>
 		<compile.target.version>1.7</compile.target.version>
 		<plugin.maven.compiler.version>3.5.1</plugin.maven.compiler.version>
+		<!-- dependencies version properties -->
+		<dependency.junit.version>4.12</dependency.junit.version>
 	</properties>
 
 	<build>
@@ -37,7 +43,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${dependency.junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

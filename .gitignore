@@ -1,2 +1,4 @@
 .idea/
 target/
+phrase-java/target
+phrase-common/target

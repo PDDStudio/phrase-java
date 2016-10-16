@@ -264,7 +264,7 @@ public final class Phrase {
 	 * @param values - The list which should be used for this replacement.
 	 * @param separator - The separator which should be used to chain several items together.
 	 *
-	 * @see #putArray(String, Object[], String) 
+	 * @see #putArray(String, Object[], String)
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> Phrase putList(String key, List<T> values, String separator) {

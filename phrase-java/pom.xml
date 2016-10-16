@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>phrase-java-root</artifactId>
+		<groupId>com.pddstudio</groupId>
+		<version>1.0.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>phrase-java</artifactId>
+	<version>${phrase.java.version}</version>
+	<packaging>jar</packaging>
+
+	<name>phrase-java</name>
+	<description>A ported - Java only - fork of Phrase for Android</description>
+	<url>https://github.com/pddstudio/phrase-java</url>
+
+</project>
