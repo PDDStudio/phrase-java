@@ -132,4 +132,13 @@ public class PhraseTest extends BaseUtilityTest {
 		assertEquals(phrase, expected);
 	}
 
+	@Test
+	public void stringListTest() {
+		List<String> stringList = toList(getRandomStringArray());
+		String expected = getExpectedStringListResult(stringList, separator);
+		String phrase = phraseFrom("{string_list}").putList("string_list", stringList, separator).formatString();
+		printResult("stringListTest()", phrase, expected);
+		assertEquals(phrase, expected);
+	}
+
 }

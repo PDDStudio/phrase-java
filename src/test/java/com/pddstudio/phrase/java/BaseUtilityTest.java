@@ -1,5 +1,6 @@
 package com.pddstudio.phrase.java;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,9 @@ public abstract class BaseUtilityTest {
 	private Random random          = new Random();
 
 	protected final Phrase.KeyIdentifier phraseKeyIdentifier;
+
+	private static final String[] LETTERS = new String[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+														   "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
 	public BaseUtilityTest(Phrase.KeyIdentifier keyIdentifier) {
 		this.phraseKeyIdentifier = keyIdentifier;
@@ -72,6 +76,18 @@ public abstract class BaseUtilityTest {
 			}
 		}
 		return sb.toString();
+	}
+
+	private String getRandomString(int length) {
+		String s = "";
+		if(length < 0 ) {
+			return s;
+		} else {
+			for(int i = 0; i < length; i++) {
+				s += LETTERS[random.nextInt(LETTERS.length -1)];
+			}
+			return s;
+		}
 	}
 
 	protected int[] getRandomIntArray() {
@@ -140,6 +156,29 @@ public abstract class BaseUtilityTest {
 			bools[i] = values[i];
 		}
 		return getExpectedArrayResult(bools, separator);
+	}
+
+	protected String getExpectedStringListResult(List<String> strings, String separator) {
+		String[] values = strings.toArray(new String[strings.size()]);
+		return getExpectedArrayResult(values, separator);
+	}
+
+	protected String[] getRandomStringArray() {
+		int size = random.nextInt(100);
+		String[] strings = new String[size];
+		for(int i = 0; i < strings.length; i++) {
+			int textLength = random.nextInt(20);
+			strings[i] = getRandomString(textLength);
+		}
+		return strings;
+	}
+
+	protected <T> List<T> toList(T[] array) {
+		List<T> list = new ArrayList<>();
+		for(T item : array) {
+			list.add(item);
+		}
+		return list;
 	}
 
 }
