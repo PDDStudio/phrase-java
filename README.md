@@ -1,7 +1,9 @@
-Phrase - Java and Android String Template
+Phrase - Java and Android String Template *Engine*
 ==================================
 
-Based upon [Phrase by Square](https://github.com/square/phrase)
+Based upon [Phrase by Square](https://github.com/square/phrase).
+
+A small String Template Library (10k) for Android and Java.
 
 [![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/pddstudio/phrase-java/master/LICENSE.txt)
 
