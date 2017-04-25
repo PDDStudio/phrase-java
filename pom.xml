@@ -14,7 +14,7 @@
 
 	<properties>
 		<!-- phrase-java project specific properties -->
-		<phrase.java.version>1.0.0-SNAPSHOT</phrase.java.version>
+		<phrase.java.version>1.0.0</phrase.java.version>
 		<phrase.commons.version>1.0.0-SNAPSHOT</phrase.commons.version>
 		<!-- plugin specific properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
