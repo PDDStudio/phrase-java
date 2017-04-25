@@ -3,7 +3,7 @@ Phrase - Java and Android String Template
 
 Based upon [Phrase by Square](https://github.com/square/phrase)
 
-[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/square/phrase/master/LICENSE.txt) [![maven](https://img.shields.io/maven-central/v/com.squareup.phrase/phrase.svg)](http://maven-repository.com/artifact/com.squareup.phrase) [![build](https://img.shields.io/travis/square/phrase.svg?style=flat)](https://travis-ci.org/square/phrase)
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/pddstudio/phrase-java/master/LICENSE.txt)
 
 API
 ---
