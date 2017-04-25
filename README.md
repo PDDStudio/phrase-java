@@ -5,7 +5,7 @@ Based upon [Phrase by Square](https://github.com/square/phrase).
 
 A small String Template Library (10k) for Android and Java.
 
-[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/pddstudio/phrase-java/master/LICENSE.txt)
+[![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/pddstudio/phrase-java/master/LICENSE.txt) [![](https://jitpack.io/v/PDDStudio/phrase-java.svg)](https://jitpack.io/#PDDStudio/phrase-java)
 
 API
 ---
