@@ -1,7 +1,5 @@
 package com.pddstudio.phrase.java.commons.tag;
 
-import javafx.util.Pair;
-
 /**
  * Created by pddstudio on 16/10/2016.
  */
