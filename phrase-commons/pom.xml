@@ -12,12 +12,70 @@
 	<version>${phrase.commons.version}</version>
 	<packaging>jar</packaging>
 
+	<properties>
+		<!-- debug/release properties resource location -->
+		<properties.configuration.debug>src/main/resources/debug</properties.configuration.debug>
+		<properties.configuration.release>src/main/resources/release</properties.configuration.release>
+		<!-- dependency versions -->
+		<dependency.apache.commons.lang3>3.4</dependency.apache.commons.lang3>
+		<dependency.apache.commons.configuration2>2.1</dependency.apache.commons.configuration2>
+		<dependency.apache.commons.beanutils>1.9.2</dependency.apache.commons.beanutils>
+		<dependency.apache.commons.codec>1.10</dependency.apache.commons.codec>
+	</properties>
+
+	<!-- debug/release profiles for commons package -->
+	<profiles>
+		<profile>
+			<id>debug</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>${properties.configuration.debug}</directory>
+					</resource>
+				</resources>
+				<finalName>${project.artifactId}-${project.version}-DEBUG</finalName>
+			</build>
+		</profile>
+		<profile>
+			<id>release</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>${properties.configuration.release}</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
 	<dependencies>
+
+		<!-- External dependencies -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>${dependency.apache.commons.lang3}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>${dependency.apache.commons.configuration2}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${dependency.apache.commons.beanutils}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${dependency.apache.commons.codec}</version>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 </project>
