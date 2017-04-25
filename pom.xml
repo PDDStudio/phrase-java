@@ -12,6 +12,31 @@
 	</modules>
 	<packaging>pom</packaging>
 
+    <distributionManagement>
+        <repository>
+            <id>central-release</id>
+            <name>plugins-releases</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>plugins-snapshot</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/PDDStudio/phrase-java</url>
+	</scm>
+
 	<properties>
 		<!-- phrase-java project specific properties -->
 		<phrase.java.version>1.0.0</phrase.java.version>

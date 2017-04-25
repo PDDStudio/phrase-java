@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 
 	<name>phrase-java</name>
-	<description>A ported - Java only - fork of Phrase for Android</description>
+	<description>A ported - Java based only - fork of Phrase for Android</description>
 	<url>https://github.com/pddstudio/phrase-java</url>
 
 </project>
