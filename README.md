@@ -37,7 +37,7 @@ You can also depend on the .jar through JitPack:
 
 <!-- Library Dependency -->
 <dependency>
-  <groupId>com.pddstudio</groupId>
+  <groupId>com.github.pddstudio</groupId>
   <artifactId>phrase</artifactId>
   <version>(insert latest version)</version>
 </dependency>
@@ -57,7 +57,7 @@ allprojects {
 
 //module dependencies
 dependencies {
-  compile 'com.github.PDDStudio:phrase-java:v1.0.0'
+  compile 'com.github.pddstudio:phrase-java:(latest version)'
 }
 ```
 
