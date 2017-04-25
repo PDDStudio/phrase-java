@@ -5,6 +5,11 @@ Based upon [Phrase by Square](https://github.com/square/phrase)
 
 [![license](http://img.shields.io/badge/license-apache_2.0-red.svg?style=flat)](https://raw.githubusercontent.com/square/phrase/master/LICENSE.txt) [![maven](https://img.shields.io/maven-central/v/com.squareup.phrase/phrase.svg)](http://maven-repository.com/artifact/com.squareup.phrase) [![build](https://img.shields.io/travis/square/phrase.svg?style=flat)](https://travis-ci.org/square/phrase)
 
+API
+---
+
+The usage is as simple as shown in the snippet below:
+
 ```java
 CharSequence formatted = Phrase.from("Hi {first_name}, you are {age} years old.")
   .put("first_name", firstName)
@@ -12,43 +17,23 @@ CharSequence formatted = Phrase.from("Hi {first_name}, you are {age} years old."
   .format();
 ```
 
-Send your phrase straight into a TextView:
-
-```java
-Phrase.from("Welcome back {user}.")
-  .put("user", name)
-  .into(textView);
-```
-
-Comma-separated lists:
-```
-CharSequence formattedList = ListPhrase.from(", ")
-  .format(1, 2, 3);
-// returns "1, 2, 3"
-```
-
-English sentence-style lists:
-```
-ListPhrase listFormatter = ListPhrase.from(
-  " and ",
-  ", ",
-  ", and ");
-
-listFormatter.format(Arrays.asList(1, 2));
-// returns "1 and 2"
-
-listFormatter.format(Arrays.asList(1, 2, 3));
-// returns "1, 2, and 3"
-```
-
 Download
 --------
 
-You can download [the latest jar here][jar].
+You can download [the latest jar here](https://github.com/PDDStudio/phrase-java/releases).
 
-You can also depend on the .jar through Maven:
+You can also depend on the .jar through JitPack:
 
 ```xml
+<!-- JitPack Repository -->
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+
+<!-- Library Dependency -->
 <dependency>
   <groupId>com.pddstudio</groupId>
   <artifactId>phrase</artifactId>
@@ -59,8 +44,18 @@ You can also depend on the .jar through Maven:
 or through Gradle:
 
 ```groovy
+
+//top level build.gradle
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+
+//module dependencies
 dependencies {
-  compile 'com.pddstudio:phrase:(insert latest version)'
+  compile 'com.github.PDDStudio:phrase-java:v1.0.0'
 }
 ```
 
